@@ -59,7 +59,7 @@ dependencies {
 
     //Glide
     implementation(Libraries.glide)
-    annotationProcessor(Libraries.glideProcessor)
+    kapt(Libraries.glideProcessor)
 
     //Livedata
     implementation(Libraries.livedata)
