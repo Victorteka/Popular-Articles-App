@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.victorteka.nytarticles.R
 import com.victorteka.nytarticles.databinding.ActivityMainBinding
 
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
