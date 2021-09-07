@@ -17,8 +17,16 @@ object Versions {
     //OkHttp
     const val okhttp = "4.9.1"
 
+    //Glide
+    const val glide = "4.12.0"
+
     //Hilt
     const val hilt_version = "2.37"
+
+    //Livedata
+    const val livedata = "2.3.1"
+
+    //
 
     // Room db
     const val room_version = "2.3.0"
@@ -34,7 +42,6 @@ object Versions {
     const val timber = "4.7.1"
     const val leakCanary = "2.4"
 
-    //test
     // tests
     const val junit = "4.+"
     const val espresso = "3.4.0"
@@ -57,6 +64,10 @@ object Libraries {
     const val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlinVersion}"
     const val coreKtx = "androidx.test.ext:junit:${Versions.androidXJUnit}"
     const val coroutineAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutinesAndroid}"
+    const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
+    const val livedata = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.livedata}"
+    const val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.livedata}"
+    const val glideProcessor = "com.github.bumptech.glide:compiler:${Versions.glide}"
     const val hilt = "com.google.dagger:hilt-android:${Versions.hilt_version}"
     const val hiltCompiler = "com.google.dagger:hilt-compiler:${Versions.hilt_version}"
     const val roomRuntime = "androidx.room:room-runtime:${Versions.room_version}"
