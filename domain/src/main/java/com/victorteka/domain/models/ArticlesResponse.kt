@@ -1,6 +1,6 @@
 package com.victorteka.domain.models
 
-data class GetArticlesResponse(
+data class ArticlesResponse(
     val result: List<Article>,
     val status: String,
     val numResults: Int
