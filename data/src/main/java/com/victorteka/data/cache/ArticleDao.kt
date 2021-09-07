@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 internal interface ArticleDao {
 
     @Insert(onConflict = REPLACE)
-    suspend fun saveArticle(articleEntity: ArticleEntity)
+    suspend fun saveArticle(articleEntities: List<ArticleEntity>)
 
     @Query("select * from popular_articles")
     suspend fun getCache(): Flow<List<ArticleEntity>>
@@ -18,4 +18,6 @@ internal interface ArticleDao {
     @Query("select exists (select 1 from popular_articles)")
     suspend fun exists(): Boolean
 
+    @Query("select count(*) from popular_articles")
+    suspend fun count(): Int
 }
