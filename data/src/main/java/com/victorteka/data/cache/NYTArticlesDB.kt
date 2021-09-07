@@ -16,7 +16,8 @@ internal abstract class NYTArticlesDB : RoomDatabase() {
             database?.let {
                 return it
             }
-            return Room.databaseBuilder(context, NYTArticlesDB::class.java, "food_db")
+            return Room.databaseBuilder(context, NYTArticlesDB::class.java, "article_db")
+                .fallbackToDestructiveMigration()
                 .build()
         }
     }

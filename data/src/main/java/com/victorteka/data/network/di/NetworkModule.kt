@@ -1,7 +1,11 @@
 package com.victorteka.data.network.di
 
 import com.google.gson.Gson
+import com.victorteka.data.network.ArticleServiceImpl
+import com.victorteka.data.network.repository.ArticleRepoImpl
 import com.victorteka.data.network.NYTApi
+import com.victorteka.domain.ArticlesService
+import com.victorteka.domain.repository.ArticlesRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -43,4 +47,9 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideNYTApi(retrofit: Retrofit): NYTApi = retrofit.create(NYTApi::class.java)
+
+    @Provides
+    @Singleton
+    fun provideArticleService(nytApi: NYTApi): ArticlesService = ArticleServiceImpl(nytApi)
+
 }
