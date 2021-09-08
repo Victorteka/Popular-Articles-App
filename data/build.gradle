@@ -33,7 +33,6 @@ android {
 }
 
 dependencies {
-    implementation project(BuildModules.coreModule)
     implementation project(BuildModules.domainModule)
 
     implementation(Libraries.kotlinStdLib)

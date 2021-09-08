@@ -41,7 +41,6 @@ dependencies {
     //Modules
     implementation project(BuildModules.domainModule)
     implementation project(BuildModules.dataModule)
-    implementation project(BuildModules.coreModule)
 
     //core ktx
     implementation(Libraries.coreKtx)
