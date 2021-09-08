@@ -7,6 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.victorteka.nytarticles.R
+import androidx.appcompat.app.AppCompatActivity
+
+
+
 
 class ArticleDetailsFragment : Fragment() {
 
@@ -20,4 +24,13 @@ class ArticleDetailsFragment : Fragment() {
         return inflater.inflate(R.layout.article_details_fragment, container, false)
     }
 
+    override fun onResume() {
+        (activity as AppCompatActivity?)!!.supportActionBar!!.hide()
+        super.onResume()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        (activity as AppCompatActivity?)!!.supportActionBar!!.show()
+    }
 }
