@@ -22,6 +22,7 @@ class PopularArticlesAdapter(private val articles: ArrayList<Article>) :
         fun bind(article: Article) {
             binding.articleTitle.text = article.title
             binding.datePublished.text = article.published_date
+            binding.authors.text = "By: ${article.byline}"
         }
     }
 
