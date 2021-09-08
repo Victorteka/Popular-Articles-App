@@ -1,13 +1,17 @@
 package com.victorteka.nytarticles.ui.home
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
+import com.victorteka.domain.Result
+import com.victorteka.domain.models.Article
+import com.victorteka.domain.repository.ArticlesRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class HomeViewModel : ViewModel() {
+@HiltViewModel
+class HomeViewModel @Inject constructor(
+    private val articlesRepository: ArticlesRepository
+) : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
-    }
-    val text: LiveData<String> = _text
+    val articles = articlesRepository.getArticles("20UGZGTAxVquIscwTzzKv9fteZQ6ZWuO").asLiveData()
 }

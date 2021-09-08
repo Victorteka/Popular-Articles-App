@@ -14,6 +14,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
@@ -26,19 +27,18 @@ object NetworkModule {
         level = HttpLoggingInterceptor.Level.BODY
     }
 
-    /*@Provides
+    @Provides
     @Singleton
     fun provideOkhttpClientToken(logging: HttpLoggingInterceptor) =
         OkHttpClient.Builder().apply {
             connectTimeout(30, TimeUnit.SECONDS)
             readTimeout(30, TimeUnit.SECONDS)
-            addInterceptor(AuthInterceptor())
             addInterceptor(logging) //Wrap in debug
-        }.build()*/
+        }.build()
 
     @Provides
     @Singleton
-    fun provideRetrofit(okHttpClient: OkHttpClient) = Retrofit.Builder()
+    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
         .addConverterFactory(GsonConverterFactory.create(Gson()))
         .baseUrl("https://api.nytimes.com/svc/mostpopular/v2/")
         .client(okHttpClient)

@@ -6,7 +6,7 @@ import com.victorteka.domain.models.Article
 internal fun Article.toEntity() = ArticleEntity(
     null,
     this.title,
-    this.publishedDate,
+    this.published_date,
     this.source,
     this.section,
     this.url,

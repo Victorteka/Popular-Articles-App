@@ -13,7 +13,7 @@ internal interface ArticleDao {
     suspend fun saveArticle(articleEntities: List<ArticleEntity>)
 
     @Query("select * from popular_articles")
-    suspend fun getCache(): Flow<List<ArticleEntity>>
+    fun getCache(): Flow<List<ArticleEntity>>
 
     @Query("select exists (select 1 from popular_articles)")
     suspend fun exists(): Boolean
