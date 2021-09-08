@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.victorteka.domain.models.Article
@@ -39,8 +40,8 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupData() {
-        homeViewModel.articles.observe(viewLifecycleOwner){ result ->
-            when(result){
+        homeViewModel.articles.observe(viewLifecycleOwner) { result ->
+            when (result) {
                 is Result.Error -> {
                     binding.articlesProgressBar.visibility = View.GONE
                     Log.d("HomeFragment", "${result.exception.message.orEmpty()}")
@@ -68,13 +69,13 @@ class HomeFragment : Fragment() {
         )
         binding.popularArticlesRV.adapter = adapter
 
-        /*adapter.on = { food ->
-            val action = AddNewMealFragmentDirections.actionAddNewMealFragmentToFoodDetailsFragment(food.food_name)
+        adapter.onArticleClicked = { article ->
+            val action = HomeFragmentDirections.actionNavHomeToArticleDetailsFragment()
             findNavController().navigate(action)
-        }*/
+        }
     }
 
-    private fun renderList(articles: List<Article>){
+    private fun renderList(articles: List<Article>) {
         adapter.addData(articles)
         adapter.notifyDataSetChanged()
     }
