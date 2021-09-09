@@ -21,7 +21,7 @@ NYT_API_KEY="xxxxxxxx"
 * Architecture
     * MVVM - Model View View Model
 
-## Screen short
+## Screen shot
 |Home Screen|
 |:----:|
-|<img src="screenshots/nyt_homescreen.png" width=300/>|
+|<img src="screenshots/nyt_home_screen.jpg" width=300/>|
