@@ -4,6 +4,7 @@ import androidx.lifecycle.*
 import com.victorteka.domain.Result
 import com.victorteka.domain.models.Article
 import com.victorteka.domain.repository.ArticlesRepository
+import com.victorteka.nytarticles.BuildConfig
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -12,6 +13,6 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val articlesRepository: ArticlesRepository
 ) : ViewModel() {
-
-    val articles = articlesRepository.getArticles("20UGZGTAxVquIscwTzzKv9fteZQ6ZWuO").asLiveData()
+    private val apiKey = BuildConfig.NYT_API_KEY
+    val articles = articlesRepository.getArticles(apiKey).asLiveData()
 }
