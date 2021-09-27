@@ -17,6 +17,11 @@ jobs:
       - name: Print contents in current directory
         run: ls -la
 
+      - name: Access NYT_API_KEY
+          env:
+            NYT_API_KEY: ${{ secrets.NYT_API_KEY }}
+          run: echo NYT_API_KEY=\"$NYT_API_KEY\" > ./local.properties
+
       - name: Run Unit Tests
         run: ./gradlew testDebugUnitTest
 
@@ -37,7 +42,4 @@ jobs:
           name: reports
           path: app/build/reports
 
-      - name: Access NYT_API_KEY
-        env:
-          NYT_API_KEY: ${{ secrets.NYT_API_KEY }}
-        run: echo NYT_API_KEY=\"$NYT_API_KEY\" > ./local.properties
+
