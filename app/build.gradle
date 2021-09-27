@@ -3,9 +3,17 @@ plugins {
     id 'kotlin-android'
     id 'dagger.hilt.android.plugin'
     id 'kotlin-kapt'
-    id 'androidx.navigation.safeargs'
-    id 'kotlin-android-extensions'
+    id 'org.jetbrains.kotlin.plugin.parcelize'
+    id 'androidx.navigation.safeargs.kotlin'
 }
+
+String getApiKey() {
+    def propFile = rootProject.file("./local.properties")
+    def properties = new Properties()
+    properties.load(new FileInputStream(propFile))
+    return properties['NYT_API_KEY']
+}
+
 
 android {
     compileSdk 31
@@ -16,6 +24,7 @@ android {
         targetSdk 31
         versionCode 1
         versionName "1.0"
+        buildConfigField ("String", "NYT_API_KEY", getApiKey())
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -27,20 +36,20 @@ android {
         }
     }
 
-    buildTypes.each {
-        it.buildConfigField 'String', 'NYT_API_KEY', NYT_API_KEY
-    }
+    buildTypes.each {}
+
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '11'
     }
     buildFeatures {
         viewBinding true
     }
 }
+
 
 dependencies {
 

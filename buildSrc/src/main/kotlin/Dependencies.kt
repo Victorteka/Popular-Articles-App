@@ -9,7 +9,7 @@ object Versions {
     const val coreKtx = "1.6.0"
 
     //Navigation
-    const val navigationVersion = "2.4.0-alpha06"
+    const val navigationVersion = "2.3.5"
 
     //retrofit
     const val retrofit = "2.9.0"

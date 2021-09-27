@@ -16,19 +16,13 @@
     </fragment>
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.victorteka.nytarticles.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
-
-    <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.victorteka.nytarticles.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
-    <fragment
         android:id="@+id/articleDetailsFragment"
         android:name="com.victorteka.nytarticles.ui.articledetails.ArticleDetailsFragment"
         android:label="article_details_fragment"
-        tools:layout="@layout/article_details_fragment" />
+        tools:layout="@layout/article_details_fragment" >
+
+        <argument
+            android:name="articleInfo"
+            app:argType="com.victorteka.data.network.dto.ArticleDto" />
+    </fragment>
 </navigation>

@@ -1,5 +1,6 @@
 package com.victorteka.data.cache
 
+import com.victorteka.data.network.dto.ArticleDto
 import com.victorteka.domain.models.Article
 
 
@@ -19,5 +20,7 @@ internal fun ArticleEntity.toDomain() = Article(
     this.source,
     this.section,
     this.url,
-    this.byline
+    this.byline,
+    listOf()
 )
+

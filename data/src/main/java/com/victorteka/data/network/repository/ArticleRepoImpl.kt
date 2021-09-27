@@ -4,7 +4,7 @@ import com.victorteka.data.cache.ArticleDao
 import com.victorteka.data.cache.toDomain
 import com.victorteka.data.cache.toEntity
 import com.victorteka.data.network.NYTApi
-import com.victorteka.domain.ArticlesService
+import com.victorteka.data.network.dto.toDomain
 import com.victorteka.domain.Result
 import com.victorteka.domain.models.Article
 import com.victorteka.domain.models.ArticlesResponse
@@ -16,10 +16,16 @@ import javax.inject.Inject
 
 internal class ArticleRepoImpl @Inject constructor(
     private val articleDao: ArticleDao,
-    private val articlesService: ArticlesService
+    private val nytApi: NYTApi
 ) : ArticlesRepository {
 
-    override fun getArticles(apiKey: String): Flow<Result<List<Article>>> = flow {
+    override suspend fun getArticles(apiKey: String): List<Article> {
+        return nytApi.getArticles(apiKey).results.map {
+            it.toDomain()
+        }
+    }
+
+    /*override fun getArticles(apiKey: String): Flow<Result<List<Article>>> = flow {
         emit(Result.Loading)
 
         if (articleDao.count() == 0) {
@@ -38,5 +44,5 @@ internal class ArticleRepoImpl @Inject constructor(
                 emit(Result.Success(list.map { it.toDomain() }))
             }
         }
-    }
+    }*/
 }

@@ -3,8 +3,8 @@ package com.victorteka.data.cache.di
 import android.content.Context
 import com.victorteka.data.cache.ArticleDao
 import com.victorteka.data.cache.NYTArticlesDB
+import com.victorteka.data.network.NYTApi
 import com.victorteka.data.network.repository.ArticleRepoImpl
-import com.victorteka.domain.ArticlesService
 import com.victorteka.domain.repository.ArticlesRepository
 import dagger.Module
 import dagger.Provides
@@ -30,6 +30,6 @@ object CacheDI {
     @Singleton
     internal fun provideArticleRepository(
         articleDao: ArticleDao,
-        articlesService: ArticlesService
-    ): ArticlesRepository = ArticleRepoImpl(articleDao, articlesService)
+        nytApi: NYTApi
+    ): ArticlesRepository = ArticleRepoImpl(articleDao, nytApi)
 }
