@@ -10,10 +10,10 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.victorteka.data.network.toDto
 import com.victorteka.domain.models.Article
 import com.victorteka.nytarticles.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
-import com.victorteka.domain.Result
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -41,20 +41,11 @@ class HomeFragment : Fragment() {
 
     private fun setupData() {
         homeViewModel.articles.observe(viewLifecycleOwner) { result ->
-            when (result) {
-                is Result.Error -> {
-                    binding.articlesProgressBar.visibility = View.GONE
-                    Log.d("HomeFragment", "${result.exception.message.orEmpty()}")
-                }
-                Result.Loading -> {
-                    Log.d("HomeFragment", "Loading ...")
-                    binding.articlesProgressBar.visibility = View.VISIBLE
-                }
-                is Result.Success -> {
-                    binding.articlesProgressBar.visibility = View.GONE
-                    renderList(result.data)
-                }
-            }
+           if (result.isNotEmpty()){
+               renderList(result)
+           }else{
+               Log.d("TAG", "Something went wrong!")
+           }
         }
     }
 
@@ -70,7 +61,7 @@ class HomeFragment : Fragment() {
         binding.popularArticlesRV.adapter = adapter
 
         adapter.onArticleClicked = { article ->
-            val action = HomeFragmentDirections.actionNavHomeToArticleDetailsFragment()
+            val action = HomeFragmentDirections.actionNavHomeToArticleDetailsFragment(article.toDto())
             findNavController().navigate(action)
         }
     }
