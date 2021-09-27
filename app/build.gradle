@@ -7,6 +7,14 @@ plugins {
     id 'org.jetbrains.kotlin.plugin.parcelize'
 }
 
+String getApiKey() {
+    def propFile = rootProject.file("./local.properties")
+    def properties = new Properties()
+    properties.load(new FileInputStream(propFile))
+    return properties['NYT_API_KEY']
+}
+
+
 android {
     compileSdk 31
 
@@ -16,6 +24,7 @@ android {
         targetSdk 31
         versionCode 1
         versionName "1.0"
+        buildConfigField ("String", "NYT_API_KEY", getApiKey())
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -27,9 +36,8 @@ android {
         }
     }
 
-    buildTypes.each {
-        it.buildConfigField 'String', 'NYT_API_KEY', NYT_API_KEY
-    }
+    buildTypes.each {}
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
@@ -41,6 +49,7 @@ android {
         viewBinding true
     }
 }
+
 
 dependencies {
 
